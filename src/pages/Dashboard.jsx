@@ -14,7 +14,6 @@ function Dashboard() {
   const [category, setCategory] = useState("All")
   const [page, setPage] = useState(1)
   const [selected, setSelected] = useState(null)
-
   const [showForm, setShowForm] = useState(false)
 
   const perPage = 10
@@ -74,24 +73,29 @@ function Dashboard() {
 
   return (
 
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-      <h1 className="text-3xl font-bold mb-6 text-center">
+      {/* TITLE */}
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
         Product Management Dashboard
       </h1>
 
-      {/* SEARCH + FILTER */}
-      <div className="flex gap-4 mb-6">
+      {/* SEARCH + FILTER + ADD BUTTON */}
+      <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
 
-        <SearchBar
-          searchTerm={search}
-          setSearchTerm={setSearch}
-        />
+        <div className="flex flex-col sm:flex-row gap-3 flex-1">
 
-        <FilterBar
-          category={category}
-          setCategory={setCategory}
-        />
+          <SearchBar
+            searchTerm={search}
+            setSearchTerm={setSearch}
+          />
+
+          <FilterBar
+            category={category}
+            setCategory={setCategory}
+          />
+
+        </div>
 
         {/* ADD PRODUCT BUTTON */}
         <button
@@ -99,7 +103,7 @@ function Dashboard() {
             setSelected(null)
             setShowForm(!showForm)
           }}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="w-full sm:w-auto bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
         >
           Add Product
         </button>
@@ -107,13 +111,13 @@ function Dashboard() {
       </div>
 
       {/* PRODUCT FORM */}
-    {showForm && (
-  <ProductForm
-    onSubmit={addOrUpdate}
-    selected={selected}
-    setShowForm={setShowForm}
-  />
-)}
+      {showForm && (
+        <ProductForm
+          onSubmit={addOrUpdate}
+          selected={selected}
+          setShowForm={setShowForm}
+        />
+      )}
 
       {/* PRODUCT LIST */}
       <ProductList
