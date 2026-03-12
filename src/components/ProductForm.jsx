@@ -68,14 +68,51 @@ function ProductForm({ onSubmit, selected, setShowForm }) {
           required
         />
 
-        <input
-          name="category"
-          placeholder="Category"
-          value={form.category}
-          onChange={handleChange}
-          className="w-full border p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          required
-        />
+      <select
+ name="category"
+ value={form.category}
+ onChange={handleChange}
+ className="w-full border p-2 rounded"
+>
+
+<option value="">Select Category</option>
+<option value="electronics">Electronics</option>
+<option value="jewelery">Accessories</option>
+<option value="men's clothing">Men Clothing</option>
+<option value="women's clothing">Women Clothing</option>
+
+</select>
+
+{/* Product rating */}
+
+<div>
+  <label className="block mb-1 font-medium">
+    Product Rating
+  </label>
+
+  <div className="flex gap-1 text-2xl cursor-pointer">
+
+    {[1,2,3,4,5].map((star) => (
+
+      <span
+        key={star}
+        onClick={() =>
+          setForm({ ...form, rating: star })
+        }
+        className={
+          star <= form.rating
+            ? "text-yellow-400"
+            : "text-gray-300"
+        }
+      >
+        ★
+      </span>
+
+    ))}
+
+  </div>
+
+</div>
 
         <textarea
           name="description"

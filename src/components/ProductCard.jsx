@@ -1,5 +1,10 @@
 function ProductCard({ product, onEdit, onDelete }) {
 
+  const ratingValue =
+    typeof product.rating === "number"
+      ? product.rating
+      : product.rating?.rate || 0;
+
   return (
 
     <div className="bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
@@ -16,9 +21,21 @@ function ProductCard({ product, onEdit, onDelete }) {
         📦 {product.category}
       </p>
 
-      <p className="text-yellow-500 mb-3">
-        ⭐ {product.rating?.rate || "N/A"}
-      </p>
+      {/* Rating */}
+      <div className="flex items-center mb-3">
+        {[1,2,3,4,5].map((star) => (
+          <span
+            key={star}
+            className={
+              star <= ratingValue
+                ? "text-yellow-400 text-lg"
+                : "text-gray-300 text-lg"
+            }
+          >
+            ★
+          </span>
+        ))}
+      </div>
 
       <div className="flex gap-3">
 

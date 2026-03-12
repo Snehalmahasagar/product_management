@@ -22,9 +22,11 @@ function Dashboard() {
     .filter(p =>
       p.title.toLowerCase().includes(search.toLowerCase())
     )
-    .filter(p =>
-      category === "All" ? true : p.category === category
-    )
+   .filter(p =>
+ category === "All"
+ ? true
+ : p.category.toLowerCase() === category.toLowerCase()
+)
 
   const start = (page - 1) * perPage
   const paginated = filtered.slice(start, start + perPage)
@@ -44,7 +46,10 @@ function Dashboard() {
     } else {
 
       product.id = Date.now()
-
+      product.rating = {
+  rate: 0,
+  count: 0
+}
       setProducts(prev => [product, ...prev])
     }
 
