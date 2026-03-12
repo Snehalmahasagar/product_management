@@ -1,5 +1,7 @@
 # Product Management Dashboard
 
+👉👉**All UI Scrren shots are inside the public folder**
+
 ## Project Overview
 
 The **Product Management Dashboard** is a React-based web application that allows users to manage products efficiently.
