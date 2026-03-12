@@ -8,7 +8,12 @@ function ProductCard({ product, onEdit, onDelete }) {
   return (
 
     <div className="bg-white p-5 rounded-xl shadow hover:shadow-lg transition">
-
+           {/* Product Image */}
+    <img
+  src={product.image || "https://via.placeholder.com/150"}
+  alt={product.title}
+  className="h-40 w-full object-contain mb-4"
+/>
       <h3 className="font-semibold text-lg mb-2">
         {product.title}
       </h3>

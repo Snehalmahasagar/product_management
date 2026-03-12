@@ -6,7 +6,9 @@ function ProductForm({ onSubmit, selected, setShowForm }) {
     title: "",
     price: "",
     category: "",
-    description: ""
+    description: "",
+    rating: 0,
+    image: ""
   })
 
   useEffect(() => {
@@ -24,18 +26,35 @@ function ProductForm({ onSubmit, selected, setShowForm }) {
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+const handleSubmit = (e) => {
+  e.preventDefault()
 
-    onSubmit(form)
+  onSubmit({
+    ...form,
+    rating: {
+      rate: form.rating,
+      count: 0
+    }
+  })
+}
 
+  const handleImageUpload = (e) => {
+
+  const file = e.target.files[0]
+
+  if (!file) return
+
+  const reader = new FileReader()
+
+  reader.onloadend = () => {
     setForm({
-      title: "",
-      price: "",
-      category: "",
-      description: ""
+      ...form,
+      image: reader.result
     })
   }
+
+  reader.readAsDataURL(file)
+}
 
   return (
 
@@ -141,6 +160,26 @@ function ProductForm({ onSubmit, selected, setShowForm }) {
           </button>
 
         </div>
+        <div>
+  <label className="block mb-1 font-medium">
+    Product Image
+  </label>
+
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleImageUpload}
+    className="w-full border p-2 rounded"
+  />
+    {/* IMAGE PREVIEW */}
+  {form.image && (
+    <img
+      src={form.image}
+      alt="preview"
+      className="h-32 mt-3 object-contain border rounded"
+    />
+  )}
+</div>
 
       </form>
 
