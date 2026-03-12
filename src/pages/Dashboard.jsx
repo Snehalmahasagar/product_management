@@ -78,12 +78,13 @@ function Dashboard() {
 
   return (
 
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 py-10 px-4">
+  <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
 
       {/* TITLE */}
-      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
-        Product Management Dashboard
-      </h1>
+   <h1 className="text-4xl font-extrabold text-center mb-8 bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+  Product Management Dashboard
+</h1>
 
       {/* SEARCH + FILTER + ADD BUTTON */}
       <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
@@ -139,6 +140,7 @@ function Dashboard() {
         setCurrentPage={setPage}
       />
 
+    </div>
     </div>
   )
 }
